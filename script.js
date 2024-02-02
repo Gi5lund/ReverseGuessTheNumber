@@ -1,6 +1,9 @@
 "use strict";
 window.addEventListener("load", start);
 let guess_no=1;
+let UPPER_LIMIT=100;
+let LOWER_LIMIT=1;
+let guess;
 
 function start() {
   console.log("start");
@@ -44,6 +47,7 @@ function tooLow() {
   
   console.log(guess_no);
   guess_no++;
+  LOWER_LIMIT=guess+1;
   generateGuess(guess_no);
 }
 function tooHigh() {
@@ -54,6 +58,7 @@ function tooHigh() {
   
     console.log(guess_no);
     guess_no++;
+    UPPER_LIMIT=guess-1;
   generateGuess(guess_no);
 }
 function correct() {
@@ -67,7 +72,7 @@ function generateGuess(guess_no) {
   console.log("generateGuess");
   
   console.log(guess_no);
-  const guess=66;
+  guess=Math.floor( (UPPER_LIMIT + LOWER_LIMIT)/2);
   const list = document.querySelector("#guess-list");
   const html=`<li id="guess-${guess_no}">I'm guessing ${guess}<span>-is that <button id="button_low">Too Low</button> <button id="button_high">Too High</button><button id="button_correct">Correct!</button></span> </li>`
   list.insertAdjacentHTML("beforeend", html);
